@@ -1,0 +1,102 @@
+cd ./FileMgrComponent && /usr/bin/make clean
+make[1]: Entering directory '/home/amin/Downloads/Text-Search-Component--master/Project1-Linux/FileMgrComponent'
+rm -rf ../Debug/libFileMgr.so FileMgr.o  FileSystem.o
+make[1]: Leaving directory '/home/amin/Downloads/Text-Search-Component--master/Project1-Linux/FileMgrComponent'
+cd ./SearchComponent && /usr/bin/make clean
+make[1]: Entering directory '/home/amin/Downloads/Text-Search-Component--master/Project1-Linux/SearchComponent'
+rm -rf ../Debug/libSearch.so Search.o
+make[1]: Leaving directory '/home/amin/Downloads/Text-Search-Component--master/Project1-Linux/SearchComponent'
+cd ./Client && /usr/bin/make clean
+make[1]: Entering directory '/home/amin/Downloads/Text-Search-Component--master/Project1-Linux/Client'
+rm -rf ../Debug/ExplicitClient ExplicitClient.o
+make[1]: Leaving directory '/home/amin/Downloads/Text-Search-Component--master/Project1-Linux/Client'
+cd ./FileMgrComponent && /usr/bin/make
+make[1]: Entering directory '/home/amin/Downloads/Text-Search-Component--master/Project1-Linux/FileMgrComponent'
+rm -rf ../Debug/libFileMgr.so FileMgr.o  FileSystem.o
+g++ -g -Wall -std=c++11 -fPIC   -c -o FileMgr.o FileMgr.cpp
+FileMgr.cpp: In member function ‘virtual std::vector<std::__cxx11::basic_string<char> > FileMgr::GetFiles(const string&)’:
+FileMgr.cpp:115:34: warning: unknown escape sequence: '\040'
+                     std::cout << "\n\     FileMgr:: S_OK for " << path;
+                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+g++ -g -Wall -std=c++11 -fPIC   -c -o FileSystem.o FileSystem.cpp
+FileSystem.cpp: In static member function ‘static std::__cxx11::string FileSystem::Path::getName(const string&, bool)’:
+FileSystem.cpp:490:10: warning: unused variable ‘end’ [-Wunused-variable]
+   size_t end = fileSpec.length() - pos;
+          ^~~
+FileSystem.cpp: In static member function ‘static bool FileSystem::Directory::remove(const string&)’:
+FileSystem.cpp:587:10: warning: unused variable ‘mode’ [-Wunused-variable]
+   mode_t mode = S_IRUSR;
+          ^~~~
+mkdir -p ../Debug
+g++ -shared -o ../Debug/libFileMgr.so FileMgr.o FileSystem.o
+make[1]: Leaving directory '/home/amin/Downloads/Text-Search-Component--master/Project1-Linux/FileMgrComponent'
+cd ./SearchComponent && /usr/bin/make
+make[1]: Entering directory '/home/amin/Downloads/Text-Search-Component--master/Project1-Linux/SearchComponent'
+rm -rf ../Debug/libSearch.so Search.o
+g++ -g -Wall -std=c++11 -fPIC   -c -o Search.o Search.cpp
+mkdir -p ../Debug
+g++ -shared -o ../Debug/libSearch.so Search.o
+make[1]: Leaving directory '/home/amin/Downloads/Text-Search-Component--master/Project1-Linux/SearchComponent'
+cd ./Client && /usr/bin/make
+make[1]: Entering directory '/home/amin/Downloads/Text-Search-Component--master/Project1-Linux/Client'
+rm -rf ../Debug/ExplicitClient ExplicitClient.o
+g++ -g -Wall -std=c++11   -c -o ExplicitClient.o ExplicitClient.cpp
+mkdir -p ../Debug    &&    g++ -o ../Debug/ExplicitClient ExplicitClient.o  -ldl
+make[1]: Leaving directory '/home/amin/Downloads/Text-Search-Component--master/Project1-Linux/Client'
+cd ./Client && /usr/bin/make run
+make[1]: Entering directory '/home/amin/Downloads/Text-Search-Component--master/Project1-Linux/Client'
+cd ../Debug &&	./ExplicitClient
+
+  Linux Search Component Demo
+ ================================
+
+   FileMgr adds a filename pattern : *.h
+
+   FileMgr adds a filename pattern : *.c
+
+   FileMgr adds a filename pattern : *.cpp
+
+   FileMgr adds a filename pattern : *.txt
+
+   FileMgr adds a filename pattern : *.cs
+
+   FileMgr adds a filename pattern : *.hpp
+
+
+       client setup dir = "../demoDir"
+
+       FileMgr:: set internal root as = /home/amin/Downloads/Text-Search-Component--master/Project1-Linux/demoDir
+
+     FileMgr:: S_OK for /home/amin/Downloads/Text-Search-Component--master/Project1-Linux/demoDir/subDir
+     FileMgr:: S_OK for /home/amin/Downloads/Text-Search-Component--master/Project1-Linux/demoDir
+
+
+ retrieved file paths : 
+	  /home/amin/Downloads/Text-Search-Component--master/Project1-Linux/demoDir/CppClient.cpp
+	  /home/amin/Downloads/Text-Search-Component--master/Project1-Linux/demoDir/subDir/noResult.cs
+	  /home/amin/Downloads/Text-Search-Component--master/Project1-Linux/demoDir/subDir/sub.hpp
+	  /home/amin/Downloads/Text-Search-Component--master/Project1-Linux/demoDir/subDir/sub.txt
+
+   --- < test case : searching \b(sub)([^ ]*) > ---
+
+
+   --- get result from Search Component ---
+
+	file  : /home/amin/Downloads/Text-Search-Component--master/Project1-Linux/demoDir/CppClient.cpp
+	 line# : 15
+
+	file  : /home/amin/Downloads/Text-Search-Component--master/Project1-Linux/demoDir/subDir/noResult.cs
+	 line# : null
+
+	file  : /home/amin/Downloads/Text-Search-Component--master/Project1-Linux/demoDir/subDir/sub.hpp
+	 line# : 2
+	 line# : 3
+	 line# : 5
+
+	file  : /home/amin/Downloads/Text-Search-Component--master/Project1-Linux/demoDir/subDir/sub.txt
+	 line# : 2
+	 line# : 3
+	 line# : 5
+
+
+make[1]: Leaving directory '/home/amin/Downloads/Text-Search-Component--master/Project1-Linux/Client'

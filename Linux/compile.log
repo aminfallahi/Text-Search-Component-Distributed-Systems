@@ -1,0 +1,33 @@
+cd ./FileMgrComp && make clean
+make[1]: Entering directory '/home/amin/Downloads/Text-Search-Component--master/Project1-Linux/FileMgrComp'
+rm -rf ../dist/libFileMgr.so FileMgr.o  FileSystem.o
+make[1]: Leaving directory '/home/amin/Downloads/Text-Search-Component--master/Project1-Linux/FileMgrComp'
+cd ./TextSearchComp && make clean
+make[1]: Entering directory '/home/amin/Downloads/Text-Search-Component--master/Project1-Linux/TextSearchComp'
+rm -rf ../dist/libTextSearch.so TextSearch.o
+make[1]: Leaving directory '/home/amin/Downloads/Text-Search-Component--master/Project1-Linux/TextSearchComp'
+cd ./Client && make clean
+make[1]: Entering directory '/home/amin/Downloads/Text-Search-Component--master/Project1-Linux/Client'
+rm -rf ../dist/Client Client.o
+make[1]: Leaving directory '/home/amin/Downloads/Text-Search-Component--master/Project1-Linux/Client'
+cd ./FileMgrComp && make
+make[1]: Entering directory '/home/amin/Downloads/Text-Search-Component--master/Project1-Linux/FileMgrComp'
+rm -rf ../dist/libFileMgr.so FileMgr.o  FileSystem.o
+g++ -g -Wall -std=c++11 -fPIC   -c -o FileMgr.o FileMgr.cpp
+g++ -g -Wall -std=c++11 -fPIC   -c -o FileSystem.o FileSystem.cpp
+mkdir -p ../dist
+g++ -shared -o ../dist/libFileMgr.so FileMgr.o FileSystem.o
+make[1]: Leaving directory '/home/amin/Downloads/Text-Search-Component--master/Project1-Linux/FileMgrComp'
+cd ./TextSearchComp && make
+make[1]: Entering directory '/home/amin/Downloads/Text-Search-Component--master/Project1-Linux/TextSearchComp'
+rm -rf ../dist/libTextSearch.so TextSearch.o
+g++ -g -Wall -std=c++11 -fPIC   -c -o TextSearch.o TextSearch.cpp
+mkdir -p ../dist
+g++ -shared -o ../dist/libTextSearch.so TextSearch.o
+make[1]: Leaving directory '/home/amin/Downloads/Text-Search-Component--master/Project1-Linux/TextSearchComp'
+cd ./Client && make
+make[1]: Entering directory '/home/amin/Downloads/Text-Search-Component--master/Project1-Linux/Client'
+rm -rf ../dist/Client Client.o
+g++ -g -Wall -std=c++11   -c -o Client.o Client.cpp
+mkdir -p ../dist    &&    g++ -o ../dist/Client Client.o  -ldl
+make[1]: Leaving directory '/home/amin/Downloads/Text-Search-Component--master/Project1-Linux/Client'
