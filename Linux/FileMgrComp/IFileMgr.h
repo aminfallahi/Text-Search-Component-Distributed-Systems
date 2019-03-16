@@ -20,6 +20,7 @@ public:
     virtual void setPath(string path) = 0;
     virtual string getPath() = 0;
     virtual vector<string> getFiles(string path="") = 0;
+    virtual int checkError(){};
 };
 
 extern "C" {                  // unmangled global factory

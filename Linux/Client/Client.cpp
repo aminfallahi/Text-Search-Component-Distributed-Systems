@@ -79,7 +79,8 @@ int main(int argc, char** argv)
 
 	ITextSearch *pTextSearch = gCreateTextSearch();
 	string regEx = inputRegEx;
-	vector<string> results = pTextSearch->GetResult(regEx, pFileMgr);
+	pTextSearch->setFileMgrIF(pFileMgr);
+	vector<string> results = pTextSearch->getResult(regEx);
 	cout << "\n\n  Results:";
 	for (string result : results) {
 		cout << result << "\n";

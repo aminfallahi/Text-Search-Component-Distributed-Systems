@@ -9,6 +9,7 @@
       </df>
       <df name="FileMgrComp">
         <in>FileMgr.cpp</in>
+        <in>FileMgr.h</in>
         <in>FileSystem.cpp</in>
         <in>FileSystem.h</in>
         <in>IFileMgr.h</in>
@@ -56,6 +57,7 @@
       <df name="TextSearchComp">
         <in>ITextSearch.h</in>
         <in>TextSearch.cpp</in>
+        <in>TextSearch.h</in>
       </df>
     </df>
   </logicalFolder>

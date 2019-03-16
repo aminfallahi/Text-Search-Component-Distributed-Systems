@@ -13,15 +13,11 @@
 #include <sstream>
 #include <regex>
 #include "ITextSearch.h"
+#include "TextSearch.h"
 
 using namespace std;
 
-class TextSearch : public ITextSearch {
-public:
-	TextSearch();
-	virtual ~TextSearch();
-	virtual vector<string> GetResult(string regEx, IFileMgr *fileMgr) override;
-};
+
 
 TextSearch::TextSearch()
 {
@@ -31,10 +27,19 @@ TextSearch::~TextSearch()
 {
 }
 
-vector<string> TextSearch::GetResult(string regEx, IFileMgr *fileMgr)
+void TextSearch::setFileMgrIF(IFileMgr *fileMgr){
+	this->fileMgr=fileMgr;
+	
+}
+
+vector<string> TextSearch::getResult(string regEx)
 {
-	vector<string> files = fileMgr->getFiles();
+	vector<string> files = this->fileMgr->getFiles();
 	vector<string> result;
+	if (this->fileMgr->checkError()){
+		cout<<"\n    Error on getting files.";
+		return result;
+	}
 	ifstream ifh;
 	string line;
 	smatch m;

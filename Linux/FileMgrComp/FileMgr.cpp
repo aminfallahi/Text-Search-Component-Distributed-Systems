@@ -13,21 +13,9 @@
 #include <string>
 #include "IFileMgr.h"
 #include "FileSystem.h"
+#include "FileMgr.h"
 using namespace FileSystem;
 using namespace std;
-
-class FileMgr : public IFileMgr {
-public:
-	FileMgr();
-	virtual ~FileMgr();
-	virtual void setPatterns(vector<string> patterns) override;
-	virtual void setPath(string path) override;
-	virtual string getPath() override;
-	virtual vector<string> getFiles(string path = "") override;
-private:
-	vector<string> patterns;
-	string path;
-};
 
 
 FileMgr::FileMgr()
@@ -62,7 +50,6 @@ vector<string> FileMgr::getFiles(string path)
 
 	// Search for files in the current directory
 	for (string pattern : patterns) {
-		//cout<<"******"<<pattern<<endl;
 		vector<string> files = Directory::getFiles(path, pattern);
 		for (string file : files) {
 			paths.push_back(path + "/" + file);
@@ -75,6 +62,10 @@ vector<string> FileMgr::getFiles(string path)
 		paths.insert(paths.end(), subPaths.begin(), subPaths.end());
 	}
 	return paths;
+}
+
+int FileMgr::checkError(){
+	return this->error;
 }
 
 IFileMgr* globalCreateFileMgr()
