@@ -21,7 +21,7 @@ public:
 	virtual string getPath() override;
 	virtual vector<string> getFiles(string path = "") override;
         virtual int checkError() override;
-        virtual vector<string> getResults() override;
+        void getResults(vector<string> &res) override;
 private:
 	vector<string> patterns;
 	string path;

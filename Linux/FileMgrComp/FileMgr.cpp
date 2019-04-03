@@ -70,9 +70,9 @@ int FileMgr::checkError()
 	return this->error;
 }
 
-vector<string> FileMgr::getResults()
+void FileMgr::getResults(vector<string> &res)
 {
-	return this->results;
+	res=this->results;
 }
 
 IFileMgr* globalCreateFileMgr()
