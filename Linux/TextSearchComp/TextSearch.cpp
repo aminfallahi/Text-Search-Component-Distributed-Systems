@@ -34,7 +34,7 @@ void TextSearch::setFileMgrIF(IFileMgr *fileMgr){
 
 vector<string> TextSearch::getResult(string regEx)
 {
-	vector<string> files = this->fileMgr->getFiles();
+	vector<string> files = this->fileMgr->getResults();
 	vector<string> result;
 	if (this->fileMgr->checkError()){
 		cout<<"\n    Error on getting files.";

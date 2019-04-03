@@ -21,6 +21,7 @@ public:
     virtual string getPath() = 0;
     virtual vector<string> getFiles(string path="") = 0;
     virtual int checkError(){};
+    virtual vector<string> getResults() = 0;
 };
 
 extern "C" {                  // unmangled global factory

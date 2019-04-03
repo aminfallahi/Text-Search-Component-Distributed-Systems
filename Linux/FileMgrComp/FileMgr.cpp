@@ -17,7 +17,6 @@
 using namespace FileSystem;
 using namespace std;
 
-
 FileMgr::FileMgr()
 {
 }
@@ -42,6 +41,7 @@ void FileMgr::setPatterns(vector<string> patterns)
 }
 
 // Search for files and directories recursively, if path is not passed, uses path from object to start
+
 vector<string> FileMgr::getFiles(string path)
 {
 	vector<string> paths;
@@ -61,11 +61,18 @@ vector<string> FileMgr::getFiles(string path)
 		vector<string> subPaths = getFiles(path + "/" + dir);
 		paths.insert(paths.end(), subPaths.begin(), subPaths.end());
 	}
+	this->results = paths;
 	return paths;
 }
 
-int FileMgr::checkError(){
+int FileMgr::checkError()
+{
 	return this->error;
+}
+
+vector<string> FileMgr::getResults()
+{
+	return this->results;
 }
 
 IFileMgr* globalCreateFileMgr()
