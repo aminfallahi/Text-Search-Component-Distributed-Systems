@@ -3,19 +3,17 @@ OBJS = FileMgr.o  FileSystem.o
 
 BINDIR = ../dist
 
-CXX = g++
-CXXFLAGS = -g -Wall -std=c++11 -fPIC
-
-.PHONY : all clean
+CPP = g++
+CPPFLAGS = -g -Wall -std=c++11 -fPIC
 
 all : clean $(TARGET)
 
 $(TARGET) : $(OBJS)
 	mkdir -p $(BINDIR)
-	$(CXX) -shared -o $(BINDIR)/$@ $^
+	$(CPP) -shared -o $(BINDIR)/$@ $^
 
 $.o : $.cpp
-	$(CXX) $(CXXFLAGS) -c $<
+	$(CPP) $(CPPFLAGS) -c $<
 
 clean : 
 	rm -rf $(BINDIR)/$(TARGET) $(OBJS)

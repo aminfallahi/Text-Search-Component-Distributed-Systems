@@ -6,8 +6,6 @@ LIBDIR2 = ./TextSearchComp
 BINDIR = ./dist
 
 
-.PHONY : all clean build
-
 all : clean build
 
 clean : 
