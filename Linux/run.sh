@@ -6,12 +6,12 @@ if [ $# -lt 3 ]; then
     echo "        ./run.sh path pattern regex"
     echo ""
     echo ""
-    echo "    For now, I will run with the following configuration. It will search all .txt files in testfiles directory for all correct email addresses:"
+    echo "    For now, I will run with the following configuration. It will search all .txt and .cpp files in testfiles directory for all correctly formatted email addresses:"
     echo ""
     echo "        ./run.sh ../testfiles \"*.txt\" \"^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$\"" 
     echo ""
 	dir="../testfiles"
-	pattern="*.txt"
+	pattern="*.txt,*.cpp"
 	regex="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"
 else
 	dir=$1
